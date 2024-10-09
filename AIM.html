@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Period Selection</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <style>
+        .highlight {
+            font-weight: bolder; /* Highlight background color */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Select Faculty Member</h2>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('NOORAIN')">NOORAIN</button>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('RENISHA')">RENISHA</button>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('ARZOO')">ARZOO</button>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('QURRAT')">QURRAT</button>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('MADHURA')">MADHURA</button>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('ZAID')">ZAID</button>
+        <button type="button" class="btn btn-primary" onclick="highlightFaculty('ABDUL WARIS')">ABDUL WARIS</button>
+
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Sl-NO</th>
+                    <th scope="col">Days</th>
+                    <th scope="col">9:00-10:00</th>
+                    <th scope="col">10:00-11:00</th>
+                    <th scope="col">11:00-12:00</th>
+                    <th scope="col">12:00-1:00</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>SAT</td>
+                    <td>OOPS</td>
+                    <td>DD&CO</td>
+                    <td>DSA</td>
+                    <td>M3</td>
+                </tr>
+                <tr>
+                    <th scope="row">2</th>
+                    <td>SUN</td>
+                    <td>OS</td>
+                    <td>DD&CO</td>
+                    <td>M3</td>
+                    <td>OOPS</td>
+                </tr>
+                <tr>
+                    <th scope="row">3</th>
+                    <td>MON</td>
+                    <td>YOGA</td>
+                    <td>GIT</td>
+                    <td>DSA</td>
+                    <td>OS</td>
+                </tr>
+                <tr>
+                    <th scope="row">4</th>
+                    <td>TUE</td>
+                    <td>SCR</td>
+                    <td>OS</td>
+                    <td>M3</td>
+                    <td>DSA</td>
+                </tr>
+                <tr>
+                    <th scope="row">5</th>
+                    <td>WED</td>
+                    <td>DSA</td>
+                    <td>OS</td>
+                    <td>OOPS</td>
+                    <td>DD&CO</td>
+                </tr>
+                <tr>
+                    <th scope="row">6</th>
+                    <td>THUR</td>
+                    <td>M3</td>
+                    <td>DD&CO</td>
+                    <td>OS</td>
+                    <td>OOPS</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const facultyClasses = {
+            'NOORAIN': ['OOPS'],
+            'RENISHA': ['OS'],
+            'ARZOO': ['DSA'],
+            'QURRAT': ['M3'],
+            'MADHURA': ['DD&CO'],
+            'ZAID': ['YOGA'],
+            'ABDUL WARIS': ['GIT']
+        };
+
+        function highlightFaculty(facultyName) {
+            const selectedClasses = facultyClasses[facultyName];
+
+            // Check if the faculty name exists in the mapping
+            if (!selectedClasses) {
+                console.error(No classes found for faculty: ${facultyName});
+                return; // Exit if no classes found
+            }
+
+            const tableRows = document.querySelectorAll('tbody tr');
+
+            // Remove highlight from all cells
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                console.log(cells)
+                cells.forEach(cell => {
+                    cell.classList.remove('highlight');
+                });
+            });
+
+            // Highlight cells that match the selected classes
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                cells.forEach(cell => {
+                    if (selectedClasses.includes(cell.textContent.trim())) {
+                        cell.classList.add('highlight'); // Highlight the matching periods
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>
